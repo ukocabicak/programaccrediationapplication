@@ -231,33 +231,6 @@
     var host = document.getElementById("sidebar");
     host.innerHTML = "";
     var tab = tabs[state.tab];
-    var p = progress();
-    var f = R.formal();
-    var a = R.accreditation();
-    var dc = R.decidedCount();
-
-    var formalText = f.result === "yes" ? "Karşılanmıştır" : f.result === "no" ? "Karşılanmamıştır" : f.met + f.na + f.notMet.length + " / " + f.total + " karar";
-    var accText = a.suggested === "akreditasyon" ? "Akreditasyon" : a.suggested === "red" ? "Reddi" : "Hesaplanmadı";
-
-    host.appendChild(
-      el("section", { class: "sidebar-section" }, [
-        el("h2", { class: "sidebar-section__title", text: "Rapor özeti" }),
-        el("div", { class: "sidebar-summary glass" }, [
-          el("div", { class: "progress" }, [
-            el("div", { class: "progress__meta" }, [el("span", { text: "Tamamlanma" }), el("strong", { class: "count-roll", text: p.percent + "%" })]),
-            el("div", { class: "progress__track", role: "progressbar", "aria-valuenow": String(p.percent), "aria-valuemin": "0", "aria-valuemax": "100", "aria-label": "Tamamlanma" }, [
-              el("div", { class: "progress__fill", style: "width:" + p.percent + "%" }),
-            ]),
-          ]),
-          row("Program", S.get("cover.programName") || "—"),
-          row("Kurum", S.get("cover.institution") || "—"),
-          row("Biçimsel inceleme", formalText, f.result === "yes" ? "success" : f.result === "no" ? "danger" : null),
-          row("Alt ölçüt kararları", dc.done + " / " + dc.total),
-          row("Akreditasyon önerisi", accText, a.suggested === "akreditasyon" ? "success" : a.suggested === "red" ? "danger" : null),
-          row("Eksik alan", String(p.missing)),
-        ]),
-      ])
-    );
 
     var steps = el("section", { class: "sidebar-section" }, [el("h2", { class: "sidebar-section__title", text: tab.label + " · Adımlar" })]);
     var stepper = el("nav", { class: "stepper", "aria-label": "Adımlar" });
@@ -296,13 +269,6 @@
     });
     steps.appendChild(stepper);
     host.appendChild(steps);
-  }
-
-  function row(label, value, tone) {
-    return el("div", { class: "sidebar-summary__row" }, [
-      el("span", { class: "sidebar-summary__label", text: label }),
-      el("span", { class: "sidebar-summary__value" + (tone ? " sidebar-summary__value--" + tone : ""), text: value || "—" }),
-    ]);
   }
 
   function buildTopProgress() {

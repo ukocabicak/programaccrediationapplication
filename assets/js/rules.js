@@ -122,19 +122,6 @@ window.Rules = (function () {
     return r;
   }
 
-  /** Değerlendirmesi tamamlanan alt ölçüt sayısı (tüm ölçütler) */
-  function decidedCount() {
-    var n = 0;
-    var total = 0;
-    C.forEach(function (c) {
-      c.subs.forEach(function (s) {
-        total++;
-        if (subDecision(s)) n++;
-      });
-    });
-    return { done: n, total: total };
-  }
-
   function findSub(code) {
     var no = parseInt(code, 10);
     var crit = C.filter(function (c) {
@@ -156,7 +143,6 @@ window.Rules = (function () {
     main: main,
     accreditation: accreditation,
     formal: formal,
-    decidedCount: decidedCount,
     findSub: findSub,
     RESULT_LABEL: RESULT_LABEL,
     RESULT_TONE: RESULT_TONE,

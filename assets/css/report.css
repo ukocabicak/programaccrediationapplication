@@ -770,9 +770,6 @@
 /* --------------------------------------------------------------------------
    Kenar çubuğu ekleri
    -------------------------------------------------------------------------- */
-.sidebar-summary__value--success { color: var(--color-success-text); font-weight: var(--weight-semibold); }
-.sidebar-summary__value--danger { color: var(--color-danger-text); font-weight: var(--weight-semibold); }
-
 .step-item__meta--crit {
   display: flex;
   align-items: center;
